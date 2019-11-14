@@ -74,7 +74,7 @@ public class SinglyLinkedList {
 
     public ListNode traverseTheLinkedList(){
         ListNode current = head;
-        ListNode next = null;
+        ListNode next;
         ListNode previous = null;
         while(current != null){
             next = current.next;
@@ -83,5 +83,33 @@ public class SinglyLinkedList {
             current = next;
         }
         return previous;
+    }
+
+    public ListNode findMiddleOfLinkedList(){
+        if(head == null){
+            return null;
+        }
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+        while (fastPtr != null && fastPtr.next != null){
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        return slowPtr;
+    }
+
+    public ListNode getNthNdeFromEnd(int n){
+        ListNode mainPtr = head;
+        ListNode refPtr = head;
+        int count = 0;
+        while (count < n){
+            refPtr = refPtr.next;
+            count++;
+        }
+        while (refPtr != null){
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+        return mainPtr;
     }
 }
